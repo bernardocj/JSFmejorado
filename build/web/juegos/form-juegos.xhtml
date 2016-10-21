@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.playFormHeader}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.playFormHeader}</h2>
+                <p:fieldset legend="#{str.playLegendForm}">
+                    <h:form>
+                        <h:panelGrid columns="1">
+                            <p:inputText placeholder="#{str.playNameHeader}"
+                                     value="#{juegoBean.juego.nombreJuego}"></p:inputText> 
+                                     <p:inputText placeholder="#{str.costHeader}"
+                                                  value="#{juegoBean.juego.costo}"></p:inputText>
+                                                  <p:inputText placeholder="#{str.descriptionPrompt}"
+                                                  value="#{juegoBean.juego.descripcion}"></p:inputText>
+                                                  
+                     <p:selectOneMenu value="#{juegoBean.juego.plataforma.idPlataforma}">
+                         <f:selectItems value="#{juegoBean.plataformas}" var="p"
+                                        itemLabel="#{p.nombre}" itemValue="#{p.idPlataforma}">
+                                </f:selectItems>
+</p:selectOneMenu>  
+                          </h:panelGrid>
+                         <p:commandButton value="#{str.buttonSave}"
+                                     action="#{juegoBean.guardar()}"></p:commandButton>
+                                     <p:commandButton value="#{str.buttonDelete}"
+                                                      action="#{juegoBean.eliminar()}"></p:commandButton>
+                                     <p:commandButton value="#{str.buttonCancel}"
+                                                      action="#{juegoBean.cancelar()}"></p:commandButton>
+                    </h:form>
+                            
+                    </p:fieldset>
+            </ui:define>
+        </ui:composition> 
+    </h:body>
+</html>
+

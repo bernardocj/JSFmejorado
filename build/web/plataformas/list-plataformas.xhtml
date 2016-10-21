@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>#{str.plataFormTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h1>#{str.plataListTitle}</h1>
+                <h:form>
+                    <p:commandButton value="#{str.buttonAdd}"
+                                     action="#{plataformaBean.iniciar()}"></p:commandButton>
+                </h:form>
+                <p:dataTable value="#{plataformaBean.plataformas}" var="pl">
+                             <p:column headerText="#{str.action}">
+                                 <h:form>
+                             <p:commandButton value="#{str.buttonEdit}"
+                                              action="#{plataformaBean.editar(pl)}"></p:commandButton>
+                                 </h:form>
+                </p:column>
+                 <p:column headerText="#{str.plataNameHeader}">
+                                 <p:outputLabel value="#{pl.nombre}"></p:outputLabel>
+                 </p:column> 
+                    <p:column headerText="#{str.NameHeader}">
+                        <p:outputLabel value="#{pl.desarrollador}"></p:outputLabel>
+                 </p:column>
+                    <p:column headerText="#{str.descHeader}">
+                        <p:outputLabel value="#{pl.descripcion}"></p:outputLabel>
+                 </p:column>
+                     </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
