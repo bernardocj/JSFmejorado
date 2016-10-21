@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>#{str.frameworkFormHeader}</title>
+    </h:head>
+    <h:body>
+       <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h1>#{str.frameworkListTitle}</h1>
+                <h:form>
+                    <p:commandButton value="#{str.buttonAdd}"
+                                     action="#{frameworkBean.iniciar()}"></p:commandButton>
+                </h:form>
+                <p:dataTable value="#{frameworkBean.frameworks}" var="f">
+                             <p:column headerText="#{str.action}">
+                                 <h:form>
+                             <p:commandButton value="#{str.buttonEdit}"
+                                              action="#{frameworkBean.editar(f)}"></p:commandButton>
+                                 </h:form>
+                    </p:column>
+                    <p:column headerText="#{str.frameworkNameHeader}">
+                        <p:outputLabel value="#{f.nombreFramework}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.versionHeader}">
+                        <p:outputLabel value="#{f.version}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.descriptionHeader}">
+                                 <p:outputLabel value="#{f.descripcion}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.lenguajeNameHeader}">
+                        <p:outputLabel value="#{f.lenguaje.nombre}"></p:outputLabel>
+                    </p:column>
+                 </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
